@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PrimeiroMvc.Models;
+using PrimeiroMvc.Repositories;
 
 namespace PrimeiroMvc.Controllers
 {
@@ -12,20 +13,14 @@ namespace PrimeiroMvc.Controllers
         // GET: Produto
         public ActionResult Index()
         {
-            using (MyCompanyContext db = new MyCompanyContext())
-            {
-                return View(db.Produtos.ToList());
-            } 
+            ProdutoRepository repository = new ProdutoRepository();
+            return View(repository.ObterProdutos());
         }
 
         public ActionResult Detalhes(int id)
         {
-            using (MyCompanyContext db = new MyCompanyContext())
-            {
-                Produto model = db.Produtos.Find(id);
-                return View(model);
-            }
-            
+            ProdutoRepository repository = new ProdutoRepository();
+            return View(repository.ObterProduto(id));
         }
 
     }
