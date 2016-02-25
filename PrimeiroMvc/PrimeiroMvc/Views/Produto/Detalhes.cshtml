@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Detalhes";
+    var produto = Model as PrimeiroMvc.Models.Produto;
+}
+
+<h2>Detalhes</h2>
+<fieldset>
+    <legend>Produto</legend>
+    <div>
+        <b>ID: </b>@produto.ID.ToString()
+    </div>
+    <div>
+        <b>Nome: </b>@produto.Nome
+    </div>
+    <div>
+        <b>Descrição: </b>@produto.Descricao
+    </div>
+</fieldset>
+
