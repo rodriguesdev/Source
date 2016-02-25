@@ -22,6 +22,5 @@ namespace PrimeiroMvc.Controllers
             ProdutoRepository repository = new ProdutoRepository();
             return View(repository.ObterProduto(id));
         }
-
     }
 }
