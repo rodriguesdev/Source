@@ -10,17 +10,22 @@ namespace PrimeiroMvc.Controllers
     public class ProdutoController : Controller
     {
         // GET: Produto
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+        public ActionResult Index()
+        {
+            using (MyCompanyContext db = new MyCompanyContext())
+            {
+                return View(db.Produtos.ToList());
+            } 
+        }
 
         public ActionResult Detalhes(int id)
         {
-            ProdutoBusiness business = new ProdutoBusiness();
-            Produto model = business.ObterProduto(id);
-
-            return View(model);
+            using (MyCompanyContext db = new MyCompanyContext())
+            {
+                Produto model = db.Produtos.Find(id);
+                return View(model);
+            }
+            
         }
 
     }

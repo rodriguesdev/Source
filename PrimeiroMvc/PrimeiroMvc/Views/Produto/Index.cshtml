@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var produtos = this.Model as List<PrimeiroMvc.Models.Produto>;
+}
+
+<h2>Index</h2>
+<table>
+    <tr>
+        <th>
+            nome
+        </th>
+        <th>
+            Preço
+        </th>
+    </tr>
+
+    @foreach (var item in produtos)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+        </tr>
+    }
+
+</table>
+
