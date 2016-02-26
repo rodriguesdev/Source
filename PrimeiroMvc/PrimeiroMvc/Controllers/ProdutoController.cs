@@ -37,18 +37,20 @@ namespace PrimeiroMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult editar(FormCollection form)
+        public ActionResult editar(Produto produto)
         {
-            Produto produto = new Produto();
-            produto.ID = Convert.ToInt32(form["hdfID"]);
-            produto.Nome = form["txtNome"];
-            produto.Preco = Convert.ToInt32(form["txtPreco"]);
-            produto.Datacriacao = Convert.ToDateTime(form["txtDataCriacao"]);
-            produto.Descricao = form["txtDescricao"];
-            ProdutoRepository repository = new ProdutoRepository();
-            repository.AtualizarProduto(produto);
+            if (ModelState.IsValid)
+            {
+                ProdutoRepository repository = new ProdutoRepository();
+                repository.AtualizarProduto(produto);
 
-            return RedirectToAction("index");
+                return RedirectToAction("index");
+            }
+
+            else
+            {
+                return View(produto);
+            } 
         }
 
     }
