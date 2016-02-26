@@ -7,43 +7,43 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+
     <div class="form-horizontal">
         <h4>Produto</h4>
         <hr />
-        <input type="hidden" name="hdfID" id="hdfID" value="@produto.ID" />
+        @Html.Hidden("hdfID", produto.ID)
         <div class="form-group">
-            <label for="txtNome" class="control-label col-md-2">Nome:</label>
+            @Html.Label("txtNome", "Nome: ", new { text = "Nome:", @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="text" name="txtNome" id="txtNome" value="@produto.Nome" />
+                @Html.TextBox("txtNome", produto.Nome)
             </div>
         </div>
 
         <div class="form-group">
-            <label for="txtPreco" class="control-label col-md-2">Preço:</label>
+            @Html.Label("txtPreco", "Preço: ", new {text = "Preço: ", @class = "control-label col-md-2"})
             <div class="col-md-10">
-                <input type="text" name="txtPreco" id="txtPreco" value="@produto.Preco" />
+                @Html.TextBox("txtPreco", produto.Preco)
             </div>
         </div>
 
         <div class="form-group">
-            <label for="txtDataCriacao" class="control-label col-md-2">Data de cadastro:</label>
+            @Html.Label("txtDataCriacao", "Data de Cadastro: ", new {text = "Data de Cadasstro: ", @class = "control-label col-md-2"})
             <div class="col-md-10">
-                <input type="text" name="txtDataCriacao" id="txtDataCriacao" value="@produto.Datacriacao" />
+                @Html.TextBox("txtDataCriacao", produto.Datacriacao)
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Descrição:</label>
+            @Html.Label("txtDescricao", "Descrição: ", new {text = "Descrição: ", @class = "control-label col-md-2"})
             <div class="col-md-10">
-                <textarea cols="20" id="txtDescricao" name="txtDescricao" rows="5">
-                    @produto.Descricao
-                </textarea>
+                @Html.TextArea("txtDescricao", produto.Descricao, 5, 20, null)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default"/>
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
     </div>
