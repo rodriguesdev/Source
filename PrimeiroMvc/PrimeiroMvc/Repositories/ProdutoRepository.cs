@@ -25,5 +25,14 @@ namespace PrimeiroMvc.Repositories
                 return model;
             }
         }
+
+        public List<Produto> BuscarProdutos(string nome)
+        {
+            using (MyCompanyContext db = new MyCompanyContext())
+            {
+                var produtos = db.Produtos.Where(p => p.Nome.Contains(nome));
+                return produtos.ToList();
+            }
+        }
     }
 }

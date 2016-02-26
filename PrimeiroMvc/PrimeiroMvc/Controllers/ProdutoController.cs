@@ -22,5 +22,11 @@ namespace PrimeiroMvc.Controllers
             ProdutoRepository repository = new ProdutoRepository();
             return View(repository.ObterProduto(id));
         }
+
+        public ActionResult Pesquisa(string nome)
+        {
+            ProdutoRepository repository = new ProdutoRepository();
+            return View(repository.BuscarProdutos(nome));
+        }
     }
 }
