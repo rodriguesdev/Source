@@ -37,15 +37,14 @@ namespace PrimeiroMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult editar(int hdfID, string txtNome, double txtPreco, DateTime txtDataCriacao, string txtDescricao)
+        public ActionResult editar(FormCollection form)
         {
             Produto produto = new Produto();
-            produto.ID = hdfID;
-            produto.Nome = txtNome;
-            produto.Preco = txtPreco;
-            produto.Datacriacao = txtDataCriacao;
-            produto.Descricao = txtDescricao;
-
+            produto.ID = Convert.ToInt32(form["hdfID"]);
+            produto.Nome = form["txtNome"];
+            produto.Preco = Convert.ToInt32(form["txtPreco"]);
+            produto.Datacriacao = Convert.ToDateTime(form["txtDataCriacao"]);
+            produto.Descricao = form["txtDescricao"];
             ProdutoRepository repository = new ProdutoRepository();
             repository.AtualizarProduto(produto);
 
