@@ -34,5 +34,15 @@ namespace PrimeiroMvc.Repositories
                 return produtos.ToList();
             }
         }
+
+        public Produto AtualizarProduto(Produto produto)
+        {
+            using (MyCompanyContext db = new MyCompanyContext())
+            {
+                db.Entry(produto).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return produto;
+            }
+        }
     }
 }
