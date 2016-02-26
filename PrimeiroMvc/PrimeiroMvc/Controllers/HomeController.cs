@@ -10,6 +10,7 @@ namespace PrimeiroMvc.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Mensagem = "Texto passado pela <strong>Action</strong>, utilizando ViewBag";
             return View();
         }
 
