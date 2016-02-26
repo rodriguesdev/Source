@@ -26,7 +26,31 @@ namespace PrimeiroMvc.Controllers
         public ActionResult Pesquisa(string nome)
         {
             ProdutoRepository repository = new ProdutoRepository();
-            return View(repository.BuscarProdutos(nome));
+            return View("Index",repository.BuscarProdutos(nome));
         }
+
+        public ActionResult Editar(int id)
+        {
+            ProdutoRepository repository = new ProdutoRepository();
+            Produto produto = repository.ObterProduto(id);
+            return View(produto);
+        }
+
+        [HttpPost]
+        public ActionResult editar(int hdfID, string txtNome, double txtPreco, DateTime txtDataCriacao, string txtDescricao)
+        {
+            Produto produto = new Produto();
+            produto.ID = hdfID;
+            produto.Nome = txtNome;
+            produto.Preco = txtPreco;
+            produto.Datacriacao = txtDataCriacao;
+            produto.Descricao = txtDescricao;
+
+            ProdutoRepository repository = new ProdutoRepository();
+            repository.AtualizarProduto(produto);
+
+            return RedirectToAction("index");
+        }
+
     }
 }
