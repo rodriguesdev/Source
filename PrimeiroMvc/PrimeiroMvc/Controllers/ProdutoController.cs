@@ -4,23 +4,53 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PrimeiroMvc.Models;
+using PrimeiroMvc.Repositories;
 
 namespace PrimeiroMvc.Controllers
 {
     public class ProdutoController : Controller
     {
         // GET: Produto
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+        public ActionResult Index()
+        {
+            ProdutoRepository repository = new ProdutoRepository();
+            return View(repository.ObterProdutos());
+        }
 
         public ActionResult Detalhes(int id)
         {
-            ProdutoBusiness business = new ProdutoBusiness();
-            Produto model = business.ObterProduto(id);
+            ProdutoRepository repository = new ProdutoRepository();
+            return View(repository.ObterProduto(id));
+        }
 
-            return View(model);
+        public ActionResult Pesquisa(string nome)
+        {
+            ProdutoRepository repository = new ProdutoRepository();
+            return View("Index",repository.BuscarProdutos(nome));
+        }
+
+        public ActionResult Editar(int id)
+        {
+            ProdutoRepository repository = new ProdutoRepository();
+            Produto produto = repository.ObterProduto(id);
+            return View(produto);
+        }
+
+        [HttpPost]
+        public ActionResult editar(Produto produto)
+        {
+            if (ModelState.IsValid)
+            {
+                ProdutoRepository repository = new ProdutoRepository();
+                repository.AtualizarProduto(produto);
+
+                return RedirectToAction("index");
+            }
+
+            else
+            {
+                return View(produto);
+            } 
         }
 
     }

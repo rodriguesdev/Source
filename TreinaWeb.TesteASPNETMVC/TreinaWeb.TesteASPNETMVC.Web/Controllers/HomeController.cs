@@ -4,13 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PrimeiroMvc.Controllers
+namespace TreinaWeb.TesteASPNETMVC.Web.Controllers
 {
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            ViewBag.Mensagem = "Texto passado pela <strong>Action</strong>, utilizando ViewBag";
             return View();
         }
 
